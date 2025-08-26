@@ -1,1 +1,93 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="../src/img/2x/baseline_movie_white_18dp.png"><link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet"><title>Movie App</title></head><body><nav class="navbar navbar-dark bg-dark"><a class="navbar-brand font-pacifico">Movie App</a></nav><div class="jumbotron jumbotron-fluid bg-dark"><br><br><div class="container"><h1 class="text-center text-light mb-5 font-ubuntu">Film apa nih yang ingin kamu kepoin?</h1><div class="input-group"><input class="form-control font-ubuntu" id="search-input" placeholder="Yuk, ketik disini judulnya..."><div class="input-group-append"><button class="btn btn-outline-light font-pacifico" type="button" id="search-button">Cari</button></div></div></div></div><div class="container d-flex justify-content-center"><div id="load" class="spinner-grow mt-3" style="width: 5rem; height: 5rem;" role="status"><span class="sr-only">Loading...</span></div></div><div style="display:none;" id="myDiv" class="animate-bottom"><h1 class="mb-3 text-center text-dark font-ubuntu" id="populer"></h1><br><div class="container font-ubuntu"><div class="row" id="movie-list"></div></div></div><div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content bg-light"><div class="modal-header"><h5 class="modal-title font-pacifico" id="exampleModalLabel">Detail Film</h5></div><div class="container d-flex justify-content-center mt-3 mb-3"><div id="modalLoad" class="spinner-grow" style="width: 5rem; height: 5rem;" role="status"><span class="sr-only">Loading...</span></div></div><div style="display: none;" id="idAnimated" class="animated"><div class="modal-body"></div></div><div class="modal-footer"><button type="button" class="btn btn-dark" data-dismiss="modal">Tutup</button></div></div></div></div><script src="bundel.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Movie App</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container"><h1 class="brand">Movie App</h1></div>
+      <div class="hero">
+        <div class="container">
+          <h2>Film apa nih yang ingin kamu kepoin?</h2>
+          <form id="search-form" class="search">
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Yuk, ketik disini judulnya..."
+              aria-label="Cari film"
+            />
+            <select id="filter-type" aria-label="Tipe">
+              <option value="">Semua tipe</option>
+              <option value="movie">Movie</option>
+              <option value="series">Series</option>
+              <option value="episode">Episode</option>
+            </select>
+            <input
+              id="filter-year"
+              type="number"
+              placeholder="Tahun"
+              aria-label="Tahun"
+              min="1900"
+              max="2099"
+              step="1"
+            />
+            <select id="sort-by" aria-label="Urutkan">
+              <option value="relevance">Relevansi</option>
+              <option value="title-asc">Judul A-Z</option>
+              <option value="title-desc">Judul Z-A</option>
+              <option value="year-desc">Tahun terbaru</option>
+              <option value="year-asc">Tahun terlama</option>
+            </select>
+            <button id="search-button" type="submit">Cari</button>
+          </form>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <div class="titlebar">
+        <h3 id="section-title" class="section-title"></h3>
+        <div class="actions"><button id="show-favorites" class="ghost">Favorit</button></div>
+      </div>
+      <div id="chips" class="chips"></div>
+      <div id="loader" class="loader" hidden></div>
+      <div id="recent" class="recent" hidden>
+        <span class="recent-label">Pencarian terakhir:</span>
+        <div id="recent-list" class="recent-list"></div>
+      </div>
+      <div id="movie-list" class="grid"></div>
+      <div id="pagination" class="pagination" hidden>
+        <button id="prev" disabled>Sebelumnya</button
+        ><span id="page-info"></span
+        ><button id="next" disabled>Berikutnya</button>
+      </div>
+    </main>
+    <div
+      id="modal"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="modal-backdrop" data-close></div>
+      <div class="modal-content" role="document">
+        <button class="modal-close" aria-label="Tutup" data-close>
+          &times;
+        </button>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
